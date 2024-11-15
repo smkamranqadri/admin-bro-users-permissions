@@ -44,6 +44,7 @@ const adminJs = new AdminJs({
         resources: [
             ...storeResource,
             userResource.initResource(mongoose, {
+                resourceModel: 'AdminUser', //optional,
                 resourceSchema: {
                     name: { type: String, required: true }, //optional
                     ...yourSchema
@@ -55,6 +56,7 @@ const adminJs = new AdminJs({
                 },
             }),
             roleResource.initResource(mongoose, {
+                resourceModel: 'AdminRole', //optional,
                 resourceOptions: {
                     parent: {
                         name: 'Access'
@@ -93,7 +95,7 @@ You have access to all the pieces which is building this library. With that, you
 ##### Resources Methods
 Method | Parameters
 ------ | -------
-initResource | [mongoose](https://mongoosejs.com/docs/api/mongoose.html), Object{resourceSchema: [Mongoose Object Schema](https://mongoosejs.com/docs/schematypes.html), resourceOptions: [ResourceOptions](https://adminjs.co/ResourceOptions.html), resourceFeatures: [Array of Features](https://adminjs.co/tutorial-features.html)} <br><br> Returns: Array<[AdminJs Resources](https://adminjs.co/AdminJs.html#resourcesl)>
+initResource | [mongoose](https://mongoosejs.com/docs/api/mongoose.html), Object{resourceModel: Custom Model Name, resourceSchema: [Mongoose Object Schema](https://mongoosejs.com/docs/schematypes.html), resourceOptions: [ResourceOptions](https://adminjs.co/ResourceOptions.html), resourceFeatures: [Array of Features](https://adminjs.co/tutorial-features.html)} <br><br> Returns: Array<[AdminJs Resources](https://adminjs.co/AdminJs.html#resourcesl)>
 getSchema | [mongoose](https://mongoosejs.com/docs/api/mongoose.html), Object{[Mongoose Object Schema](https://mongoosejs.com/docs/schematypes.html)} <br><br>Returns: [Mongoose Schema](https://mongoosejs.com/docs/guide.html)
 getOptions | Object{[ResourceOptions](https://adminjs.co/ResourceOptions.html)} <br><br>Returns: [Object of ResourceOptions](https://adminjs.co/ResourceOptions.html)
 getFeatures | Array<[Features](https://adminjs.co/tutorial-features.html)> <br><br>Returns: Array of AdminJs Features

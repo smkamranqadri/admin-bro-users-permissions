@@ -1,11 +1,10 @@
-// const mongoose = require('mongoose')
 const passwordFeature = require('@adminjs/passwords')
 const merge = require('lodash/fp/merge')
 const { resourceName: roleResourceName } = require('./../role')
 const isAccessGranted = require('./../../policies/isAccessGranted')
 const { generateHash } = require('./../../utils/password')
 
-const resourceName = 'User'
+let resourceName = 'User'
 
 module.exports = {
     resourceName,
@@ -17,7 +16,8 @@ module.exports = {
     transformPassword,
 }
 
-function initResource(mongoose, { resourceSchema, resourceOptions, resourceFeatures }) {
+function initResource(mongoose, { resourceModel, resourceSchema, resourceOptions, resourceFeatures }) {
+    resourceName = resourceModel;
     const schema = getSchema(mongoose, resourceSchema)
 
     return {

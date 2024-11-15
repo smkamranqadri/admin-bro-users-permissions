@@ -1,8 +1,7 @@
-//const mongoose = require('mongoose')
 const merge = require('lodash/fp/merge')
 const isAccessGranted = require('./../../policies/isAccessGranted')
 
-const resourceName = 'Role'
+let resourceName = 'Role'
 
 module.exports = {
     resourceName,
@@ -13,7 +12,8 @@ module.exports = {
     getFeatures,
 }
 
-function initResource(mongoose, { resourceSchema, resourceOptions, resourceFeatures } = {}) {
+function initResource(mongoose, { resourceModel, resourceSchema, resourceOptions, resourceFeatures } = {}) {
+    resourceName = resourceModel;
     const schema = getSchema(mongoose, resourceSchema)
 
     return {
